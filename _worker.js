@@ -2980,12 +2980,12 @@ accountNumber = await getAccountNumber(fullUserName,initialaccountNumber, antype
    return generateLoginResponse('The current access token has not been updated.');
  }
  }   
-     const finalaccessToken = await KV.get(accessTokenKey);
+ const finalaccessToken = await KV.get(accessTokenKey);
  const shareToken = await getShareToken(fullUserName, finalaccessToken,accountNumber);
 
  
  if (shareToken === 'Can not get share token.') {
-     //await KV.put(accessTokenKey, "Bad_AT");
+     await KV.put(accessTokenKey, "Bad_AT");
      await loginlog(fullUserName, `Bad AT_${accountNumber}`,'Error');
      return generateLoginResponse('Error fetching share token.');
  }
